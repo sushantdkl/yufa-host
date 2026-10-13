@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Yufa Eatery Surkhet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,700;1,6..12,400&display=swap">
+<style>
+/* Layout: one committed daytime look that matches the logo's paper. The tagline is the structure: the hero states it, then three photo columns prove each part. Left-aligned on a 1160px column. */
+:root{
+  --paper:#FCF3E4;      /* the logo's own background */
+  --paper-2:#F3E5CE;    /* warm wood band */
+  --bark:#3F2A1D;       /* script brown from the logo */
+  --muted:#7A6453;
+  --line:#E4D2B6;
+  --olive:#5D6B35;      /* the leaf sprig */
+  --sun:#E2A23A;        /* the rising sun */
+  --display:"Young Serif","Iowan Old Style",Georgia,serif;
+  --body:"Nunito Sans","Segoe UI",system-ui,-apple-system,sans-serif;
+  --wrap:1160px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+body{background:var(--paper);color:var(--bark);font-family:var(--body);font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--olive);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.12;margin:0;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:clamp(16px,4vw,40px)}
+
+.btn{display:inline-flex;align-items:center;gap:10px;font:700 .98rem/1 var(--body);text-decoration:none;border-radius:999px;padding:15px 24px;border:1.5px solid transparent;cursor:pointer;transition:filter .2s,background .2s,border-color .2s;background:none;color:inherit}
+.btn-olive{background:var(--olive);color:#FCF3E4}
+.btn-olive:hover{filter:brightness(1.1)}
+.btn-line{border-color:var(--bark)}
+.btn-line:hover{background:var(--bark);color:var(--paper)}
+
+/* NAV */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(252,243,228,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:10px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand img{width:48px;height:48px;border-radius:50%}
+.brand span{font-family:var(--display);font-size:1.25rem}
+.nav ul{display:flex;gap:30px;list-style:none;margin:0;padding:0}
+.nav ul a{text-decoration:none;color:var(--muted);font-weight:600;font-size:.95rem}
+.nav ul a:hover{color:var(--bark)}
+.nav .btn{padding:11px 18px;font-size:.92rem}
+@media (max-width:820px){.nav ul{display:none}}
+
+/* HERO */
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(32px,6vw,80px);align-items:center;padding-block:clamp(40px,7vw,88px)}
+.kicker{display:flex;align-items:center;gap:8px;color:var(--olive);font-weight:700;font-size:.95rem;margin-bottom:22px}
+.kicker svg{width:16px;height:16px}
+.hero h1{font-size:clamp(2.8rem,6.6vw,5.2rem);line-height:1.02}
+.hero h1 span{display:block}
+.hero h1 span:nth-child(2){padding-left:.6em}
+.hero h1 span:nth-child(3){padding-left:1.2em}
+.hero .lede{color:var(--muted);font-size:1.15rem;max-width:42ch;margin-top:26px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+
+.collage{position:relative;min-height:440px}
+.collage .main{position:absolute;right:0;top:0;width:70%;border-radius:200px 200px 12px 12px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(63,42,29,.45)}
+.collage .main img{width:100%;aspect-ratio:9/14;object-fit:cover}
+.collage .side{position:absolute;left:0;bottom:6%;width:52%;border-radius:12px;overflow:hidden;border:8px solid var(--paper);box-shadow:0 20px 40px -20px rgba(63,42,29,.4)}
+.collage .side img{width:100%;aspect-ratio:1;object-fit:cover}
+.sun{position:absolute;left:6%;top:4%;width:96px;height:96px;color:var(--sun);animation:spin 60s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.collage{min-height:0;aspect-ratio:1/1.05;max-width:460px;width:100%}}
+
+/* TAGLINE TRIPTYCH */
+.triptych{padding-block:clamp(56px,8vw,96px);border-top:1px solid var(--line)}
+.trip-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,3vw,36px)}
+.trip figure{margin:0}
+.trip .ph{border-radius:10px;overflow:hidden;aspect-ratio:4/3;background:var(--line)}
+.trip img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.trip:hover img{transform:scale(1.03)}
+.trip h2{font-size:clamp(1.6rem,2.6vw,2.1rem);margin-top:20px}
+.trip p{color:var(--muted);margin-top:8px;max-width:38ch}
+@media (max-width:820px){.trip-grid{grid-template-columns:1fr}.trip .ph{aspect-ratio:16/10}}
+
+section{padding-block:clamp(64px,9vw,112px)}
+
+/* KITCHEN */
+.kitchen{background:var(--paper-2)}
+.kitchen .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,88px);align-items:center}
+.kitchen h2{font-size:clamp(2rem,4vw,3rem)}
+.kitchen .body{color:var(--muted);margin-top:16px;max-width:46ch}
+.plate{margin-top:30px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:24px 26px}
+.plate h3{font-size:1.35rem}
+.plate ul{list-style:none;padding:0;margin:14px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:10px 20px}
+.plate li{display:flex;gap:10px;align-items:baseline}
+.plate li::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--olive);transform:translateY(-1px)}
+.plate .note{color:var(--muted);font-size:.9rem;margin-top:16px}
+.kitchen figure{margin:0}
+.kitchen figure img{width:100%;border-radius:12px;aspect-ratio:3/2;object-fit:cover}
+.kitchen figcaption{color:var(--muted);font-size:.88rem;margin-top:10px}
+@media (max-width:860px){.kitchen .wrap{grid-template-columns:1fr}}
+@media (max-width:420px){.plate ul{grid-template-columns:1fr}}
+
+/* SPACE */
+.space .wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,6vw,88px);align-items:center}
+.space figure{margin:0}
+.space figure img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:12px 200px 12px 12px}
+.space h2{font-size:clamp(2rem,4vw,3rem)}
+.space .body{color:var(--muted);margin-top:16px;max-width:48ch}
+.details{list-style:none;padding:0;margin:28px 0 0;display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
+.details li{padding:14px 16px 14px 0;border-bottom:1px solid var(--line)}
+.details b{display:block;font-weight:700}
+.details span{color:var(--muted);font-size:.93rem}
+@media (max-width:860px){.space .wrap{grid-template-columns:1fr}.space figure{max-width:460px}}
+@media (max-width:420px){.details{grid-template-columns:1fr}}
+
+/* FIND US */
+.find{background:var(--paper-2)}
+.find .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(32px,6vw,80px);align-items:start}
+.find h2{font-size:clamp(2rem,4vw,3rem)}
+.info{margin:24px 0 0;display:grid;gap:20px}
+.info dt{font-size:.85rem;color:var(--muted);font-weight:600}
+.info dd{margin:2px 0 0;font-size:1.12rem}
+.map{position:relative;margin-top:28px;border-radius:14px;overflow:hidden;border:1px solid var(--line);aspect-ratio:4/3;background:
+  radial-gradient(circle at 50% 46%,rgba(226,162,58,.35) 0 8%,transparent 9%),
+  repeating-linear-gradient(28deg,transparent 0 46px,rgba(63,42,29,.08) 46px 48px),
+  repeating-linear-gradient(-62deg,transparent 0 70px,rgba(93,107,53,.12) 70px 74px),
+  var(--paper)}
+.map iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.map .pin{position:absolute;left:50%;top:46%;transform:translate(-50%,-100%);display:grid;justify-items:center;gap:8px}
+.map .pin svg{width:40px;height:40px;color:var(--olive)}
+.map .pin b{background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-family:var(--display);font-weight:400;white-space:nowrap}
+.map .open{position:absolute;left:16px;bottom:16px}
+.socials{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.socials a{text-decoration:none;border:1.5px solid var(--line);border-radius:999px;padding:10px 16px;font-weight:600;font-size:.95rem}
+.socials a:hover{border-color:var(--bark)}
+
+.book{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:clamp(22px,3.5vw,38px)}
+.book h3{font-size:2rem}
+.book > p{color:var(--muted);margin-top:8px}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
+.field{display:grid;gap:6px;min-width:0}
+.field.full{grid-column:1/-1}
+.field label{font-size:.88rem;color:var(--muted);font-weight:600}
+.field input,.field select,.field textarea{font:inherit;font-size:1rem;color:var(--bark);background:#fffaf2;border:1px solid var(--line);border-radius:10px;padding:12px 14px;width:100%}
+.field textarea{min-height:80px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--olive);outline-offset:0;border-color:transparent}
+.preview{margin-top:20px;background:var(--paper-2);border-radius:10px;padding:14px 16px;white-space:pre-wrap;font-size:.92rem}
+.book-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.book-actions .btn{flex:1 1 190px;justify-content:center}
+.status{min-height:1.4em;margin-top:10px;font-size:.88rem;color:var(--olive);font-weight:600}
+@media (max-width:860px){.find .wrap{grid-template-columns:1fr}}
+@media (max-width:460px){.fields{grid-template-columns:1fr}}
+
+footer{padding-block:48px;border-top:1px solid var(--line)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between}
+footer img{width:120px}
+footer p{color:var(--muted);font-size:.92rem;max-width:40ch}
+</style>
+</head>
+<body>
+
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="pin" viewBox="0 0 24 24"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z" fill="currentColor"/><circle cx="12" cy="10" r="2.6" fill="#FCF3E4"/></symbol>
+</svg>
+
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="img/logo.jpg" alt="" width="48" height="48"><span>Yufa Eatery</span></a>
+    <ul>
+      <li><a href="#food">Food</a></li>
+      <li><a href="#space">The space</a></li>
+      <li><a href="#find">Find us</a></li>
+    </ul>
+    <a class="btn btn-olive" href="#book">Reserve a table</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <p class="kicker"><svg aria-hidden="true"><use href="#pin"/></svg>Pipalchautara-6, Surkhet</p>
+      <h1><span>Good food.</span><span>Good mood.</span><span>Good company.</span></h1>
+      <p class="lede">Home-style Nepali khana sets and easy bites, served in a bright, wood-lined dining room made for long lunches with family and friends.</p>
+      <div class="hero-actions">
+        <a class="btn btn-olive" href="#book">Reserve a table</a>
+        <a class="btn btn-line" href="#find">Get directions</a>
+      </div>
+    </div>
+    <div class="collage">
+      <svg class="sun" viewBox="0 0 100 100" aria-hidden="true"><g stroke="currentColor" stroke-width="3" stroke-linecap="round">
+        <line x1="50" y1="4" x2="50" y2="18"/><line x1="50" y1="82" x2="50" y2="96"/><line x1="4" y1="50" x2="18" y2="50"/><line x1="82" y1="50" x2="96" y2="50"/>
+        <line x1="17" y1="17" x2="27" y2="27"/><line x1="73" y1="73" x2="83" y2="83"/><line x1="17" y1="83" x2="27" y2="73"/><line x1="73" y1="27" x2="83" y2="17"/></g>
+        <circle cx="50" cy="50" r="22" fill="currentColor"/></svg>
+      <div class="main"><img src="img/thali-service.jpg" alt="A server carrying two Nepali khana set thalis through the Yufa dining room" width="335" height="597"></div>
+      <div class="side"><img src="img/interior.jpg" alt="Yufa Eatery dining room with wooden slat walls, brass pendant lamps and cream armchairs" width="447" height="447"></div>
+    </div>
+  </div>
+</header>
+
+<div class="triptych" id="food">
+  <div class="wrap trip-grid">
+    <figure class="trip">
+      <div class="ph"><img src="img/spread.jpg" alt="A table spread with rice, grilled meat, wraps and dips" loading="lazy" width="547" height="365"></div>
+      <figcaption><h2>Good food</h2><p>Cooked fresh every day, with portions that send you home happy.</p></figcaption>
+    </figure>
+    <figure class="trip">
+      <div class="ph"><img src="img/interior.jpg" alt="Sunlit dining area with pendant lamps and a plant wall" loading="lazy" width="447" height="447" style="object-position:50% 40%"></div>
+      <figcaption><h2>Good mood</h2><p>Sunlight, warm wood, green plants and soft armchairs that make it hard to leave.</p></figcaption>
+    </figure>
+    <figure class="trip">
+      <div class="ph"><img src="img/friends.jpg" alt="A group of friends sharing khana sets at a long table" loading="lazy" width="597" height="335"></div>
+      <figcaption><h2>Good company</h2><p>Long tables for birthdays, reunions and the whole gang after class.</p></figcaption>
+    </figure>
+  </div>
+</div>
+
+<main>
+  <section class="kitchen">
+    <div class="wrap">
+      <div>
+        <h2>The khana set, done right</h2>
+        <p class="body">Our most-ordered plate is a full Nepali thali, served on a brass plate the way it should be. Come hungry.</p>
+        <div class="plate">
+          <h3>On the thali</h3>
+          <ul>
+            <li>Steamed rice</li><li>Dal</li><li>Seasonal tarkari</li><li>Saag</li>
+            <li>Achar</li><li>Chicken or mutton curry</li>
+          </ul>
+          <p class="note">Ask about today's specials, snacks and drinks at the counter, or message us before you come.</p>
+        </div>
+      </div>
+      <figure><img src="img/friends.jpg" alt="Friends around a table of khana sets at Yufa Eatery" loading="lazy" width="597" height="335"><figcaption>Thali night with the gang.</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="space" id="space">
+    <div class="wrap">
+      <figure><img src="img/interior.jpg" alt="The bright Yufa dining room with wooden counters, slatted partitions and brass lamps" loading="lazy" width="447" height="447"></figure>
+      <div>
+        <h2>A sunny room in Pipalchautara</h2>
+        <p class="body">Big windows, honey-toned wood and a little green everywhere. Families take the long tables, friends take the armchairs by the window.</p>
+        <ul class="details">
+          <li><b>Wooden slat partitions</b><span>Cosy corners without closing anyone off.</span></li>
+          <li><b>Brass pendant lamps</b><span>Warm light once the sun goes down.</span></li>
+          <li><b>Cream armchairs</b><span>Soft seats for long conversations.</span></li>
+          <li><b>Nepali art on the walls</b><span>Mountains, temples and colour.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="find" id="find">
+    <div class="wrap">
+      <div>
+        <h2>Find us</h2>
+        <dl class="info">
+          <div><dt>Address</dt><dd>Pipalchautara-6, Birendranagar, Surkhet</dd></div>
+          <div><dt>Tagline</dt><dd>Good food, good mood, good company.</dd></div>
+        </dl>
+        <div class="map" id="map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3503.0546470507898!2d81.61324937640453!3d28.59813737568352!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39a285a144c99069%3A0x5c117896f85678f8!2sYufa%20Eatery!5e0!3m2!1sen!2snp!4v1791865137224!5m2!1sen!2snp" title="Yufa Eatery on Google Maps" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+        <div class="socials">
+          <a href="https://www.facebook.com/p/Yufa-Eatery-100054626371194/" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.tiktok.com/@yufaeaterysurkhet____" target="_blank" rel="noopener">TikTok</a>
+          <a href="https://maps.google.com/?cid=6634216315900295416" target="_blank" rel="noopener">Google Maps</a>
+        </div>
+      </div>
+
+      <form class="book" id="book" novalidate>
+        <h3>Reserve a table</h3>
+        <p>Fill this in, copy your request and send it to us on Facebook Messenger. We will reply to confirm.</p>
+        <div class="fields">
+          <div class="field full"><label for="b-name">Your name</label><input id="b-name" autocomplete="name" placeholder="Full name"></div>
+          <div class="field"><label for="b-date">Date</label><input id="b-date" type="date"></div>
+          <div class="field"><label for="b-time">Time</label><input id="b-time" type="time" value="13:00"></div>
+          <div class="field"><label for="b-guests">Guests</label>
+            <select id="b-guests"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>8</option><option>10</option><option>12+</option></select></div>
+          <div class="field"><label for="b-occ">Occasion</label>
+            <select id="b-occ"><option>Lunch or dinner</option><option>Birthday</option><option>Family gathering</option><option>Office or team meal</option></select></div>
+          <div class="field full"><label for="b-note">Notes</label><textarea id="b-note" placeholder="Number of khana sets, seating near the window..."></textarea></div>
+        </div>
+        <div class="preview" id="b-preview" aria-live="polite"></div>
+        <div class="book-actions">
+          <button class="btn btn-olive" type="button" id="b-copy">Copy request</button>
+          <a class="btn btn-line" href="https://m.me/100054626371194" target="_blank" rel="noopener">Open Messenger</a>
+        </div>
+        <p class="status" id="b-status"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="img/logo.jpg" alt="Yufa Eatery logo: good food, good mood, good company. Pipalchautara-6, Surkhet" width="554" height="554">
+    <p>Yufa Eatery, Pipalchautara-6, Birendranagar, Surkhet. Good food, good mood, good company.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var date=$("b-date");
+  try{var d=new Date(); d.setMinutes(d.getMinutes()-d.getTimezoneOffset()); date.value=d.toISOString().slice(0,10); date.min=date.value;}catch(e){}
+  function fmtTime(v){if(!v) return ""; var p=v.split(":"), h=+p[0]; return ((h%12)||12)+":"+p[1]+(h<12?" AM":" PM");}
+  function msg(){
+    var l=["Namaste Yufa Eatery! I'd like to reserve a table."];
+    if($("b-name").value.trim()) l.push("Name: "+$("b-name").value.trim());
+    if(date.value) l.push("Date: "+date.value);
+    if($("b-time").value) l.push("Time: "+fmtTime($("b-time").value));
+    l.push("Guests: "+$("b-guests").value);
+    l.push("Occasion: "+$("b-occ").value);
+    if($("b-note").value.trim()) l.push("Notes: "+$("b-note").value.trim());
+    return l.join("\n");
+  }
+  function render(){$("b-preview").textContent=msg(); $("b-status").textContent="";}
+  var form=$("book");
+  form.addEventListener("input",render); form.addEventListener("change",render);
+  form.addEventListener("submit",function(e){e.preventDefault();});
+  $("b-copy").addEventListener("click",function(){
+    var status=$("b-status");
+    function fallback(){var r=document.createRange(); r.selectNodeContents($("b-preview")); var s=window.getSelection(); s.removeAllRanges(); s.addRange(r); status.textContent="Request selected. Copy it, then paste it into Messenger.";}
+    try{navigator.clipboard.writeText(msg()).then(function(){status.textContent="Copied. Paste it into Messenger to send.";},fallback);}catch(e){fallback();}
+  });
+  render();
+})();
+</script>
+
+</body>
+</html>
