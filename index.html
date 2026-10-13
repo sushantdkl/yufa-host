@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -15,7 +15,7 @@
   --paper:#FCF3E4;      /* the logo's own background */
   --paper-2:#F3E5CE;    /* warm wood band */
   --bark:#3F2A1D;       /* script brown from the logo */
-  --muted:#7A6453;
+  --muted:#6D5544;
   --line:#E4D2B6;
   --olive:#5D6B35;      /* the leaf sprig */
   --sun:#E2A23A;        /* the rising sun */
@@ -38,6 +38,8 @@ p{margin:0}
 ::selection{background:var(--sun);color:var(--bark)}
 .skip-link{position:fixed;left:12px;top:12px;z-index:100;transform:translateY(-160%);background:var(--bark);color:var(--paper);padding:10px 16px;border-radius:8px;font-weight:700;text-decoration:none}
 .skip-link:focus{transform:translateY(0)}
+.sprite{position:absolute;width:0;height:0}
+.interior-crop{object-position:50% 40%}
 
 .btn{display:inline-flex;align-items:center;gap:10px;font:700 .98rem/1 var(--body);text-decoration:none;border-radius:999px;padding:15px 24px;border:1.5px solid transparent;cursor:pointer;transition:filter .2s,background .2s,border-color .2s;background:none;color:inherit}
 .btn-olive{background:var(--olive);color:#FCF3E4}
@@ -99,13 +101,13 @@ p{margin:0}
 @media (max-width:430px){
   .hero .wrap{padding-block:34px 52px}
   .kicker{margin-bottom:16px;font-size:.88rem}
-  .hero h1{font-size:clamp(2.45rem,12.5vw,3.15rem)}
+  .hero h1{font-size:clamp(2.35rem,11.4vw,2.85rem)}
   .hero h1 span:nth-child(2){padding-left:.28em}
   .hero h1 span:nth-child(3){padding-left:.56em}
   .hero .lede{font-size:1.02rem;margin-top:20px}
-  .hero-actions{display:grid;grid-template-columns:1fr 1fr;margin-top:26px}
+  .hero-actions{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;margin-top:26px;margin-bottom:30px}
   .hero-actions .btn{justify-content:center;padding-inline:12px}
-  .collage{margin-top:4px}
+  .collage{z-index:1;margin-top:4px}
   .sun{width:70px;height:70px}
 }
 
@@ -205,17 +207,41 @@ section{padding-block:clamp(64px,9vw,112px)}
   .nav ul a{min-height:44px;display:flex;align-items:center}
 }
 
-footer{padding-block:48px;border-top:1px solid var(--line)}
-footer .wrap{display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between}
-footer img{width:120px}
-footer p{color:var(--muted);font-size:.92rem;max-width:40ch}
+footer{border-top:1px solid var(--line);padding-block:clamp(48px,7vw,80px) max(28px,env(safe-area-inset-bottom))}
+.footer-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(150px,.55fr) minmax(220px,.8fr);gap:clamp(32px,6vw,76px);align-items:start}
+.footer-brand{display:grid;grid-template-columns:76px minmax(0,1fr);gap:18px;align-items:center}
+.footer-brand img{width:76px;height:76px;border-radius:50%;object-fit:cover}
+.footer-brand h2{font-size:1.55rem}
+.footer-brand p,.footer-visit p{color:var(--muted);font-size:.94rem;line-height:1.55;margin-top:6px;max-width:36ch}
+.footer-title{font-size:.82rem;font-weight:700;color:var(--muted);margin-bottom:10px}
+.footer-links{display:grid;gap:4px}
+.footer-links a{width:max-content;min-height:38px;display:flex;align-items:center;text-decoration:none;font-weight:700}
+.footer-links a:hover{text-decoration:underline;text-underline-offset:4px}
+.footer-visit address{font-style:normal;font-family:var(--display);font-size:1.16rem;line-height:1.35}
+.footer-visit .btn{margin-top:18px;padding:12px 18px}
+.footer-bottom{grid-column:1/-1;display:flex;justify-content:space-between;gap:20px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:.86rem}
+.footer-socials{display:flex;flex-wrap:wrap;gap:18px}
+.footer-socials a{text-decoration:none;font-weight:700}
+.footer-socials a:hover{text-decoration:underline;text-underline-offset:4px}
+@media (max-width:760px){
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .footer-brand{grid-column:1/-1}
+  .footer-bottom{align-items:flex-start}
+}
+@media (max-width:480px){
+  .footer-grid{grid-template-columns:1fr;gap:30px}
+  .footer-brand{grid-column:auto;grid-template-columns:64px minmax(0,1fr)}
+  .footer-brand img{width:64px;height:64px}
+  .footer-links{grid-template-columns:1fr 1fr}
+  .footer-bottom{display:grid;gap:12px}
+}
 </style>
 </head>
 <body>
 
 <a class="skip-link" href="#main-content">Skip to main content</a>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<svg class="sprite" width="0" height="0" aria-hidden="true">
   <symbol id="pin" viewBox="0 0 24 24"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z" fill="currentColor"/><circle cx="12" cy="10" r="2.6" fill="#FCF3E4"/></symbol>
 </svg>
 
@@ -229,11 +255,11 @@ footer p{color:var(--muted);font-size:.92rem;max-width:40ch}
     </ul>
     <a class="btn btn-olive" href="#book"><span class="desktop-label">Reserve a table</span><span class="mobile-label">Reserve</span></a>
   </div>
-  <div class="mobile-nav" aria-label="Mobile navigation">
+  <nav class="mobile-nav" aria-label="Mobile navigation">
     <a href="#food">Food</a>
     <a href="#space">The space</a>
     <a href="#find">Find us</a>
-  </div>
+  </nav>
 </nav>
 
 <header class="hero" id="top">
@@ -265,7 +291,7 @@ footer p{color:var(--muted);font-size:.92rem;max-width:40ch}
       <figcaption><h2>Good food</h2><p>Cooked fresh every day, with portions that send you home happy.</p></figcaption>
     </figure>
     <figure class="trip">
-      <div class="ph"><img src="img/interior.jpg" alt="Sunlit dining area with pendant lamps and a plant wall" loading="lazy" width="447" height="447" style="object-position:50% 40%"></div>
+      <div class="ph"><img class="interior-crop" src="img/interior.jpg" alt="Sunlit dining area with pendant lamps and a plant wall" loading="lazy" width="447" height="447"></div>
       <figcaption><h2>Good mood</h2><p>Sunlight, warm wood, green plants and soft armchairs that make it hard to leave.</p></figcaption>
     </figure>
     <figure class="trip">
@@ -330,7 +356,7 @@ footer p{color:var(--muted);font-size:.92rem;max-width:40ch}
         <h3>Reserve a table</h3>
         <p>Fill this in, copy your request and send it to us on Facebook Messenger. We will reply to confirm.</p>
         <div class="fields">
-          <div class="field full"><label for="b-name">Your name</label><input id="b-name" autocomplete="name" placeholder="Full name"></div>
+          <div class="field full"><label for="b-name">Your name</label><input id="b-name" type="text" autocomplete="name" placeholder="Full name"></div>
           <div class="field"><label for="b-date">Date</label><input id="b-date" type="date"></div>
           <div class="field"><label for="b-time">Time</label><input id="b-time" type="time" value="13:00"></div>
           <div class="field"><label for="b-guests">Guests</label>
@@ -341,7 +367,7 @@ footer p{color:var(--muted);font-size:.92rem;max-width:40ch}
         </div>
         <div class="preview" id="b-preview" aria-live="polite"></div>
         <div class="book-actions">
-          <button class="btn btn-olive" type="button" id="b-copy">Copy request</button>
+          <button class="btn btn-olive" type="submit" id="b-copy">Copy request</button>
           <a class="btn btn-line" href="https://m.me/100054626371194" target="_blank" rel="noopener">Open Messenger</a>
         </div>
         <p class="status" id="b-status"></p>
@@ -350,10 +376,33 @@ footer p{color:var(--muted);font-size:.92rem;max-width:40ch}
   </section>
 </main>
 
-<footer>
-  <div class="wrap">
-    <img src="img/logo.jpg" alt="Yufa Eatery logo: good food, good mood, good company. Pipalchautara-6, Surkhet" width="554" height="554">
-    <p>Yufa Eatery, Pipalchautara-6, Birendranagar, Surkhet. Good food, good mood, good company.</p>
+<footer id="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <img src="img/logo.jpg" alt="Yufa Eatery" width="554" height="554" loading="lazy" decoding="async">
+      <div>
+        <h2>Yufa Eatery</h2>
+        <p>Good food, good mood, good company in the heart of Surkhet.</p>
+      </div>
+    </div>
+    <nav class="footer-links" aria-label="Footer">
+      <p class="footer-title">Explore</p>
+      <a href="#food">Food</a>
+      <a href="#space">The space</a>
+      <a href="#book">Reserve a table</a>
+    </nav>
+    <div class="footer-visit">
+      <p class="footer-title">Come by</p>
+      <address>Pipalchautara-6, Birendranagar, Surkhet</address>
+      <a class="btn btn-line" href="https://maps.google.com/?cid=6634216315900295416" target="_blank" rel="noopener">Get directions</a>
+    </div>
+    <div class="footer-bottom">
+      <p>Made for long lunches with family and friends.</p>
+      <div class="footer-socials">
+        <a href="https://www.facebook.com/p/Yufa-Eatery-100054626371194/" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://www.tiktok.com/@yufaeaterysurkhet____" target="_blank" rel="noopener">TikTok</a>
+      </div>
+    </div>
   </div>
 </footer>
 
@@ -376,12 +425,12 @@ footer p{color:var(--muted);font-size:.92rem;max-width:40ch}
   function render(){$("b-preview").textContent=msg(); $("b-status").textContent="";}
   var form=$("book");
   form.addEventListener("input",render); form.addEventListener("change",render);
-  form.addEventListener("submit",function(e){e.preventDefault();});
-  $("b-copy").addEventListener("click",function(){
+  function copyRequest(){
     var status=$("b-status");
     function fallback(){var r=document.createRange(); r.selectNodeContents($("b-preview")); var s=window.getSelection(); s.removeAllRanges(); s.addRange(r); status.textContent="Request selected. Copy it, then paste it into Messenger.";}
     try{navigator.clipboard.writeText(msg()).then(function(){status.textContent="Copied. Paste it into Messenger to send.";},fallback);}catch(e){fallback();}
-  });
+  }
+  form.addEventListener("submit",function(e){e.preventDefault();copyRequest();});
   render();
 })();
 </script>
