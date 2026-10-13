@@ -166,6 +166,7 @@ section{padding-block:clamp(64px,9vw,112px)}
 .info{margin:24px 0 0;display:grid;gap:20px}
 .info dt{font-size:.85rem;color:var(--muted);font-weight:600}
 .info dd{margin:2px 0 0;font-size:1.12rem}
+.info dd a{text-decoration-thickness:1px;text-underline-offset:4px}
 .map{position:relative;margin-top:28px;border-radius:14px;overflow:hidden;border:1px solid var(--line);aspect-ratio:4/3;background:
   radial-gradient(circle at 50% 46%,rgba(226,162,58,.35) 0 8%,transparent 9%),
   repeating-linear-gradient(28deg,transparent 0 46px,rgba(63,42,29,.08) 46px 48px),
@@ -342,10 +343,12 @@ footer{border-top:1px solid var(--line);padding-block:clamp(48px,7vw,80px) max(2
         <h2>Find us</h2>
         <dl class="info">
           <div><dt>Address</dt><dd>Pipalchautara-6, Birendranagar, Surkhet</dd></div>
+          <div><dt>WhatsApp</dt><dd><a href="https://wa.me/9779858051378" target="_blank" rel="noopener">+977 985-8051378</a></dd></div>
           <div><dt>Tagline</dt><dd>Good food, good mood, good company.</dd></div>
         </dl>
         <div class="map" id="map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3503.0546470507898!2d81.61324937640453!3d28.59813737568352!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39a285a144c99069%3A0x5c117896f85678f8!2sYufa%20Eatery!5e0!3m2!1sen!2snp!4v1791865137224!5m2!1sen!2snp" title="Yufa Eatery on Google Maps" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
         <div class="socials">
+          <a href="https://wa.me/9779858051378" target="_blank" rel="noopener">WhatsApp</a>
           <a href="https://www.facebook.com/p/Yufa-Eatery-100054626371194/" target="_blank" rel="noopener">Facebook</a>
           <a href="https://www.tiktok.com/@yufaeaterysurkhet____" target="_blank" rel="noopener">TikTok</a>
           <a href="https://maps.google.com/?cid=6634216315900295416" target="_blank" rel="noopener">Google Maps</a>
@@ -354,7 +357,7 @@ footer{border-top:1px solid var(--line);padding-block:clamp(48px,7vw,80px) max(2
 
       <form class="book" id="book" novalidate>
         <h3>Reserve a table</h3>
-        <p>Fill this in, copy your request and send it to us on Facebook Messenger. We will reply to confirm.</p>
+        <p>Fill this in and send your request directly on WhatsApp. We will reply to confirm.</p>
         <div class="fields">
           <div class="field full"><label for="b-name">Your name</label><input id="b-name" type="text" autocomplete="name" placeholder="Full name"></div>
           <div class="field"><label for="b-date">Date</label><input id="b-date" type="date"></div>
@@ -367,8 +370,8 @@ footer{border-top:1px solid var(--line);padding-block:clamp(48px,7vw,80px) max(2
         </div>
         <div class="preview" id="b-preview" aria-live="polite"></div>
         <div class="book-actions">
-          <button class="btn btn-olive" type="submit" id="b-copy">Copy request</button>
-          <a class="btn btn-line" href="https://m.me/100054626371194" target="_blank" rel="noopener">Open Messenger</a>
+          <a class="btn btn-olive" id="b-whatsapp" href="https://wa.me/9779858051378" target="_blank" rel="noopener">Send on WhatsApp</a>
+          <button class="btn btn-line" type="submit" id="b-copy">Copy request</button>
         </div>
         <p class="status" id="b-status"></p>
       </form>
@@ -394,11 +397,13 @@ footer{border-top:1px solid var(--line);padding-block:clamp(48px,7vw,80px) max(2
     <div class="footer-visit">
       <p class="footer-title">Come by</p>
       <address>Pipalchautara-6, Birendranagar, Surkhet</address>
+      <p><a href="https://wa.me/9779858051378" target="_blank" rel="noopener">WhatsApp +977 985-8051378</a></p>
       <a class="btn btn-line" href="https://maps.google.com/?cid=6634216315900295416" target="_blank" rel="noopener">Get directions</a>
     </div>
     <div class="footer-bottom">
       <p>Made for long lunches with family and friends.</p>
       <div class="footer-socials">
+        <a href="https://wa.me/9779858051378" target="_blank" rel="noopener">WhatsApp</a>
         <a href="https://www.facebook.com/p/Yufa-Eatery-100054626371194/" target="_blank" rel="noopener">Facebook</a>
         <a href="https://www.tiktok.com/@yufaeaterysurkhet____" target="_blank" rel="noopener">TikTok</a>
       </div>
@@ -422,13 +427,13 @@ footer{border-top:1px solid var(--line);padding-block:clamp(48px,7vw,80px) max(2
     if($("b-note").value.trim()) l.push("Notes: "+$("b-note").value.trim());
     return l.join("\n");
   }
-  function render(){$("b-preview").textContent=msg(); $("b-status").textContent="";}
+  function render(){var text=msg(); $("b-preview").textContent=text; $("b-whatsapp").href="https://wa.me/9779858051378?text="+encodeURIComponent(text); $("b-status").textContent="";}
   var form=$("book");
   form.addEventListener("input",render); form.addEventListener("change",render);
   function copyRequest(){
     var status=$("b-status");
-    function fallback(){var r=document.createRange(); r.selectNodeContents($("b-preview")); var s=window.getSelection(); s.removeAllRanges(); s.addRange(r); status.textContent="Request selected. Copy it, then paste it into Messenger.";}
-    try{navigator.clipboard.writeText(msg()).then(function(){status.textContent="Copied. Paste it into Messenger to send.";},fallback);}catch(e){fallback();}
+    function fallback(){var r=document.createRange(); r.selectNodeContents($("b-preview")); var s=window.getSelection(); s.removeAllRanges(); s.addRange(r); status.textContent="Request selected. Use your device's copy command.";}
+    try{navigator.clipboard.writeText(msg()).then(function(){status.textContent="Reservation request copied to your clipboard.";},fallback);}catch(e){fallback();}
   }
   form.addEventListener("submit",function(e){e.preventDefault();copyRequest();});
   render();
